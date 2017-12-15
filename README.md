@@ -12,36 +12,42 @@ In this exercise we will be scraping weather data from Weather Weather Undergrou
 * After this final submission, you will be brought to a page that gives you a **Key ID**. The Key ID will be the password we use to get into the API. 
 
 ## Working With JSON Objects
-*
-'''{
+* JSON Objects are like python maps (but are a little more complicated), they hold and exchange a information. The reason why we are using JSON Objects, and not Python maps, is because the website broadcasts information in JavaScript format. 
+* Below is a sample of the object that will be broadcast from Weather Underground. 
+
+```
+{
 	"response": {
-		"version": "0.1"
-		,"termsofService": "http://www.wunderground.com/weather/api/d/terms.html"
-		,"features": {
-		"conditions": 1
+		"version": "0.1",
+		"termsofService": "http://www.wunderground.com/weather/api/d/terms.html",
+		"features": {
+			"conditions": 1
 		}
-	}
-		,	"current_observation": {
+	},	
+	"current_observation": {
 		"image": {
-		"url":"http://icons-ak.wxug.com/graphics/wu2/logo_130x80.png",
-		"title":"Weather Underground",
-		"link":"http://www.wunderground.com"
+			"url":"http://icons-ak.wxug.com/graphics/wu2/logo_130x80.png",
+			"title":"Weather Underground",
+			"link":"http://www.wunderground.com"
 		},
 		"display_location": {
-		"full":"San Francisco, CA",
-		"city":"San Francisco",
-		"state":"CA",
-		"state_name":"California",
-		"country":"US",
-		"country_iso3166":"US",
-		"zip":"94101",
-		"magic":"1",
-		"wmo":"99999",
-		"latitude":"37.77500916",
-		"longitude":"-122.41825867",
-		"elevation":"47.00000000"
-		},
-		.....'''
+			"full":"San Francisco, CA",
+			"city":"San Francisco",
+			"state":"CA",
+			"state_name":"California",
+			"country":"US",
+			"country_iso3166":"US",
+			"zip":"94101",
+			"magic":"1",
+			"wmo":"99999",
+			"latitude":"37.77500916",
+			"longitude":"-122.41825867",
+			"elevation":"47.00000000"
+		}, .....
+		
+```
+* Notice how all the information is organized. There are parents (response & current_observation), children (version, termsofService, features, image, display_location), and grandchildren (conditions, url, title, link, full, city, state, state_name, country, country_iso3166, etc.)
+	* In order to access the grandchildren, we first need to access the parent and the child it belongs to.
 
 
 ##
@@ -49,5 +55,8 @@ In this exercise we will be scraping weather data from Weather Weather Undergrou
 ## Vocabulary
 * API: (Application Program Interface) a set of  programming instructions and standards for accessing web based software applications.
 * API Key:
-* JSON Object:
+* JSON Object: (JavaScript Object Notation) is very much like a python map, it is a way of storing information.  In JavaScript, an object gets called like this:
+```
+var myObj = { "name":"John", "age":31, "city":"New York" };
+```
 
