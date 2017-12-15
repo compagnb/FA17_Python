@@ -14,9 +14,9 @@ In this exercise we will be scraping weather data from Weather Weather Undergrou
 ```
 http://api.wunderground.com/api/APIKey/conditions/q/CA/San_Francisco.json
 ```
-	* The position where **APIKey** will differ, as it should match that password that you were assigned after signing up. 
-	* **conditions** can be exchanged for other information too. For other options, refer to the documentation for the API.
-	* **CA**, and **San_Francisco.json** can also be changed to match the state and city we choose. 
+* The position where **APIKey** will differ, as it should match that password that you were assigned after signing up. 
+* **conditions** can be exchanged for other information too. For other options, refer to the documentation for the API.
+* **CA**, and **San_Francisco.json** can also be changed to match the state and city we choose. 
 	
 * If we put this url into the browser, you should recieve something called a **JSON Object**... it will look like this:
 ```
@@ -120,24 +120,34 @@ http://api.wunderground.com/api/APIKey/conditions/q/CA/San_Francisco.json
 ```
 apiData = urllib2.urlopen('http://api.wunderground.com/api/APIKey/conditions/q/CA/San_Francisco.json')
 ```
+* Now that the object has been stored into a variable, we need to manipulate it in order to tell us the exact information we are looking for.
 	
 ## Working With JSON Objects
 * JSON Objects are like python maps (but are a little more complicated), they hold and exchange a information. The reason why we are using JSON Objects, and not Python maps, is because the website broadcasts information in JavaScript format. 
-* Below is a sample of the object that will be broadcast from Weather Underground. 
 * Notice how all the information is organized. There are parents (response & current_observation), children (version, termsofService, features, image, display_location), and grandchildren (conditions, url, title, link, full, city, state, state_name, country, country_iso3166, etc.) In order to access the grandchildren, we first need to access the parent and the child it belongs to.
-
-## JSON Module
 * To manipluate this data, the **json module** is needed. Documentation on this module can be found at https://docs.python.org/2/library/json.html. Similar to the urlib2 module, this is not part of the original Python install, so unless you manually install (with a PIP command), it will only give you an error message. 
-* Since this object holds a bunch of information, we need to **parse**, or break it down into smaller pieces and convert it to a string variable that we can hold in Python. 
+* Since this object holds a bunch of information, we need to **read** and **parse** the data. This will break it down into smaller pieces and convert it to a string variable that we can hold in Python. 
+```
+jsonString = apiData.read()
+parsedJson = jsonLoads(jsonString)
+```
+* Now that the data is parsed, it is easier to pull the information stored in the children and grandchildren. To pull the information for the location, we do so like this:
+```
+location = parsedJson['display_location']['city']
+```
+* Notice how we pin point the information we are pulling out... by listing where it is found in the structure.
+* Now try and do one for the temperature. 
 
-##
+## Challenge:
+* Make a program that asks for a location from the user and give the temperature. 
+* Make an add on for the space invader game that we built that changes the weather for the temperature.
 
 ## Vocabulary
 * API: (Application Program Interface) a set of  programming instructions and standards for accessing web based software applications.
-* API Key:
+* API Key: Password used to access an API
 * JSON Object: (JavaScript Object Notation) is very much like a python map, it is a way of storing information.  In JavaScript, an object gets called like this:
 ```
 var myObj = { "name":"John", "age":31, "city":"New York" };
 ```
-* Parse: 
+* Parse: break down information into smaller parts
 
