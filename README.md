@@ -46,9 +46,14 @@ In this exercise we will be scraping weather data from Weather Weather Undergrou
 		}, .....
 		
 ```
-* Notice how all the information is organized. There are parents (response & current_observation), children (version, termsofService, features, image, display_location), and grandchildren (conditions, url, title, link, full, city, state, state_name, country, country_iso3166, etc.)
-	* In order to access the grandchildren, we first need to access the parent and the child it belongs to.
+* Notice how all the information is organized. There are parents (response & current_observation), children (version, termsofService, features, image, display_location), and grandchildren (conditions, url, title, link, full, city, state, state_name, country, country_iso3166, etc.) In order to access the grandchildren, we first need to access the parent and the child it belongs to.
 
+## Connecting Python To A Website
+https://docs.python.org/2/library/urllib2.html
+
+## JSON Module
+* To manipluate this data, the **json module** is needed. Documentation on this module can be found at https://docs.python.org/2/library/json.html. This is not part of the original Python install, so unless you manually install (with a PIP command), it will only give you an error message. 
+* Since this object holds a bunch of information, we need to **parse**, or break it down into smaller pieces and convert it to a string variable that we can hold in Python. 
 
 ##
 
@@ -59,4 +64,5 @@ In this exercise we will be scraping weather data from Weather Weather Undergrou
 ```
 var myObj = { "name":"John", "age":31, "city":"New York" };
 ```
+* Parse: 
 
